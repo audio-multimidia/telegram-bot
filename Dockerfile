@@ -1,13 +1,13 @@
+FROM python:3.7.3-stretch
 
-FROM python:3.7.3-alpine3.9
+RUN pip install --upgrade pip
 
-COPY . /app
-WORKDIR /app
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
 
-RUN pip install -r requirements.txt
+COPY ./config.json . 
+COPY src /src
 
-ENTRYPOINT ["python"]
+EXPOSE 4458
 
-EXPOSE 3000
-
-CMD ["server.py"]
+CMD ["python", "/src/app.py"]
