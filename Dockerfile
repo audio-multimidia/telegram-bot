@@ -10,4 +10,6 @@ COPY src /src
 
 EXPOSE 4458
 
-CMD ["python", "/src/app.py"]
+WORKDIR "./src"
+
+CMD ["python", "src/app.py"]
