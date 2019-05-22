@@ -106,3 +106,4 @@ venv.bak/
 #config
 config.json
 tmp/
+*.oga

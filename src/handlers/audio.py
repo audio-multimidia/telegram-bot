@@ -11,9 +11,9 @@ def __watch( bot, update):
         logging.info ("[audio_handler]")
         logging.info (audioObj)
 
-        file_id = audioObj["file_id"]
+        file_id = audioObj[FILE_ID]
         audioFile = bot.get_file(file_id)
-        audioFile.download("tmp/audios/" + file_id + ".oga")
+        audioFile.download(PATH + file_id + AUDIO_EXTENSION)
 
     
 def audio_handler():
