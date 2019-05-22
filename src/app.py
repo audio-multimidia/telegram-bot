@@ -13,10 +13,6 @@ import config
 def init():
     config_logger()
     
-
-    # bot = Bot(token=config.get(TELEGRAM_TOKEN))
-    # bot.getFile
-
     updater = Updater(token=config.get(TELEGRAM_TOKEN))
     dispatcher = updater.dispatcher
     
