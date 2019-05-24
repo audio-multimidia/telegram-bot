@@ -108,3 +108,4 @@ serviceAccount.json
 config.json
 tmp/
 *.oga
+.vscode
