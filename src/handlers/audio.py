@@ -8,7 +8,7 @@ import logging
 
 def __watch(bot, update):
     audioObj = update[MESSAGE][VOICE]
-    print("caiu aqui")
+
     if audioObj:
         logging.info("[audio_handler]")
         logging.info(audioObj)
