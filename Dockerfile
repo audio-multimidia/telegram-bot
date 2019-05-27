@@ -10,6 +10,12 @@ COPY src /src
 
 EXPOSE 4458
 
+RUN apt update && \
+    apt install curl && \
+    curl -sL https://deb.nodesource.com/setup_4.x | bash && \
+    apt-get install nodejs && \
+    npm install -g nodemon
+
 WORKDIR "./src"
 
-CMD ["python", "src/app.py"]
+CMD ["nodemon", "--exec", "python", "src/app.py"]
