@@ -5,6 +5,7 @@ from constants import *
 
 from commands.ban_word import ban_word
 from commands.get_banned_words import get_banned_words
+from commands.free_word import free_word
 
 
 def __watch(bot, update):
@@ -23,6 +24,8 @@ def __watch(bot, update):
         ban_word(update, args)
     elif command == "words":
         get_banned_words(update, args)
+    elif command == "free":
+        free_word(update, args)
 
 
 def command_handler():
