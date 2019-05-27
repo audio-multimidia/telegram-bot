@@ -12,17 +12,19 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 transaction = db.transaction()
 
+
 @firestore.transactional
 def banWordTransaction(transaction, chatId, word, update):
     doc_ref = db.collection("servers").document(chatId)
     snapshot = doc_ref.get(transaction=transaction)
     words = snapshot.get("words")
 
-    if(word in words):
+    if word in words:
         word_exists(word, update)
     else:
         transaction.update(doc_ref, {"words": words + [word]})
         success_ban(word, update)
+
 
 @firestore.transactional
 def freeWordTransaction(transaction, chatId, word, update):
@@ -30,14 +32,14 @@ def freeWordTransaction(transaction, chatId, word, update):
     snapshot = doc_ref.get(transaction=transaction)
     words = snapshot.get("words")
 
-    if(word not in words):
+    if word not in words:
         word_doesnt_exists(word, update)
     else:
-        #TODO
-        new_words = words.remove(word)
-        logging.info(new_words)
-        transaction.update(doc_ref, {"words": new_words})
+        words.remove(word)
+        logging.info(words)
+        transaction.update(doc_ref, {"words": words})
         success_free(word, update)
+
 
 def ban_word(chatId, word, update):
     doc_ref = db.collection("servers").document(chatId)
@@ -47,6 +49,7 @@ def ban_word(chatId, word, update):
         doc_ref.list({"words": [word]})
     else:
         banWordTransaction(transaction, chatId, word, update)
+
 
 def free_word(chatId, word, update):
     doc_ref = db.collection("servers").document(chatId)
