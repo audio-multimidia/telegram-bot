@@ -39,6 +39,5 @@ def __watch(update, context):
     logging.info(chat)
     logging.info(text)
 
-
 def text_handler():
     return MessageHandler(Filters.text, __watch)
