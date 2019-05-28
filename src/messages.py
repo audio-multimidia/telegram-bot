@@ -1,4 +1,5 @@
 from constants import *
+import logging
 
 def word_exists(word, update):
     update[MESSAGE].reply_text("The word \"" + word + "\" is already on the black list.")
@@ -18,6 +19,7 @@ def format_words(words, key):
     return ", ".join(words)
 
 def get_words(words, update):
+    logging.info(words)
     size = len(words)
     if size == 0:
         update[MESSAGE].reply_text("There is no banned words yet")
@@ -25,3 +27,6 @@ def get_words(words, update):
         update[MESSAGE].reply_text("Current banned words: \n▪" + format_words(words, True))
     else:
         update[MESSAGE].reply_text("Current banned words:\n" + format_words(words, False))
+
+def user_unauthorized(update):
+    update[MESSAGE].reply_text("Only administrators can use this command")

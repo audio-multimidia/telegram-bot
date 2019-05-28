@@ -8,8 +8,9 @@ def __watch(update, context):
     chat = message[CHAT]
     text = message[TEXT]
 
-    logging.info(chat)
-    logging.info(text)
+    #logging.info(chat)
+    #logging.info(text)
+    #logging.info(context)
 
 
 def text_handler():

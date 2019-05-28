@@ -12,7 +12,6 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 transaction = db.transaction()
 
-
 @firestore.transactional
 def banWordTransaction(transaction, chatId, word, update):
     doc_ref = db.collection("servers").document(chatId)
@@ -24,7 +23,6 @@ def banWordTransaction(transaction, chatId, word, update):
     else:
         transaction.update(doc_ref, {"words": words + [word]})
         success_ban(word, update)
-
 
 @firestore.transactional
 def freeWordTransaction(transaction, chatId, word, update):
@@ -46,7 +44,7 @@ def ban_word(chatId, word, update):
     snapshot = doc_ref.get()
 
     if not snapshot.exists:
-        doc_ref.list({"words": [word]})
+        doc_ref.set({"words": [word]})
     else:
         banWordTransaction(transaction, chatId, word, update)
 
