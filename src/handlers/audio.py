@@ -1,6 +1,7 @@
 from telegram.ext import MessageHandler, Filters
 from telegram import File
 from constants import *
+from util.convert_audio import ogg_to_mp3
 
 import os
 import logging
@@ -15,7 +16,10 @@ def __watch(bot, update):
 
         file_id = audioObj[FILE_ID]
         audioFile = bot.get_file(file_id)
-        audioFile.download(PATH + file_id + AUDIO_EXTENSION)
+
+        fileName = PATH + file_id + OGG_EXTENSION
+        audioFile.download(fileName)
+        ogg_to_mp3(file_id + OGG_EXTENSION)
 
 
 def audio_handler():
