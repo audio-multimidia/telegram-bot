@@ -24,6 +24,7 @@ def __watch(bot, update):
     # logging.info("Command: " + command)
     # logging.info("Arguments: " + ", ".join(args))
     sender = message.chat.get_member(usr_id)
+    logging.info(sender)
     logging.info(sender.status)
     if sender.status == "creator" or sender.status == "administrator":
         logging.info(command)
