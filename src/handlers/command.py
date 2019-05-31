@@ -19,11 +19,14 @@ def __watch(bot, update):
     splitedMsg = text.split()
     command = cut_command(splitedMsg[0][1:])
     args = splitedMsg[1:]
+
     # logging.info("UPDATE: " + str(update))
     # logging.info("idUser: " + str(usr_id))
     # logging.info("Command: " + command)
     # logging.info("Arguments: " + ", ".join(args))
+
     sender = message.chat.get_member(usr_id)
+    logging.info(sender)
     logging.info(sender.status)
     if sender.status == "creator" or sender.status == "administrator":
         logging.info(command)
@@ -34,6 +37,7 @@ def __watch(bot, update):
             get_banned_words(update, args)
         elif command == "free":
             free_word(update, args)
+
     else:
         user_unauthorized(update)
 
