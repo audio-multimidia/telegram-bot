@@ -1,6 +1,7 @@
 from constants import *
 import logging
 import unicodedata
+from util.text_format import clean_word, remove_accents
 
 def word_exists(word, update):
     update[MESSAGE].reply_text("The word \"" + word + "\" is already on the black list.")
@@ -31,18 +32,6 @@ def get_words(words, update):
 
 def user_unauthorized(update):
     update[MESSAGE].reply_text("Only administrators can use this command")
-
-def remove_accents(word):
-    return "".join(
-        (
-            c
-            for c in unicodedata.normalize("NFD", word)
-            if unicodedata.category(c) != "Mn"
-        )
-    )
-
-def clean_word(word):
-    return remove_accents(word).lower()
 
 def censored_message(update, chat_id, sender, text, banned_words):
     response = ""

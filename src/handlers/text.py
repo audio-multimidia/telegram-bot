@@ -4,20 +4,7 @@ from constants import *
 import logging
 import unicodedata
 from messages import *
-
-
-def remove_accents(word):
-    return "".join(
-        (
-            c
-            for c in unicodedata.normalize("NFD", word)
-            if unicodedata.category(c) != "Mn"
-        )
-    )
-
-
-def clean_word(word):
-    return remove_accents(word).lower()
+from util.text_format import clean_word, remove_accents
 
 
 def __watch(update, context):
