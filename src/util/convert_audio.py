@@ -5,7 +5,7 @@ def ogg_to_mp3 (fileName):
     audio = AudioSegment.from_ogg(PATH + fileName)
 
     new_path = PATH + fileName.replace(OGG_EXTENSION, MP3_EXTENSION)
-    audio.export(new_path, format=MP3)
+    audio.export(new_path, format=MP3, tags={"artist": "@WordBlocker"})
     
     return new_path
 

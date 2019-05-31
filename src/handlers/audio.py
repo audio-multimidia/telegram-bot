@@ -8,7 +8,9 @@ import logging
 
 
 def __watch(bot, update):
-    audioObj = update[MESSAGE][VOICE]
+    message  = update[MESSAGE]
+
+    audioObj = message[VOICE]
 
     if audioObj:
         logging.info("[audio_handler]")
@@ -16,11 +18,16 @@ def __watch(bot, update):
 
         file_id = audioObj[FILE_ID]
         audioFile = bot.get_file(file_id)
-
         fileName = PATH + file_id + OGG_EXTENSION
         audioFile.download(fileName)
-        ogg_to_mp3(file_id + OGG_EXTENSION)
+        newPath = ogg_to_mp3(file_id + OGG_EXTENSION)
 
+        usr_id = message.from_user.id
+        sender = message.chat.get_member(usr_id).user
+        username = sender.username
+
+        message.reply_audio(open(newPath, RB), title="Audio from @" + username)
+        message.delete()
 
 def audio_handler():
     path = "tmp/audios"
