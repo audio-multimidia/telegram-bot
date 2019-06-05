@@ -2,12 +2,13 @@
 from ibm_watson import SpeechToTextV1
 from pydub import AudioSegment
 import json
+import config
 from constants import *
 
 
 speech_to_text = SpeechToTextV1(
-    iam_apikey= iam_apikey,
-    url= urlSpeechToText
+    iam_apikey= config.get(WATSON_API_KEY),
+    url= config.get(URL_SPEECH_TO_TEXT)
 )
 
 def audio_to_text(filePath):
