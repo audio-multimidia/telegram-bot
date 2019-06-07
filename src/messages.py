@@ -43,3 +43,9 @@ def censored_message(update, chat_id, sender, text, banned_words):
         response = response + " "
 
     update.send_message(chat_id=chat_id, text="@"+ sender.username+"\n"+str(response))
+
+def empty_bl(update):
+    update[MESSAGE].reply_text("The black list is already clean")
+
+def free_all_words(update):
+    update[MESSAGE].reply_text("Now the black list is all empty")
