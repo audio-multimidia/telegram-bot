@@ -38,6 +38,17 @@ def freeWordTransaction(transaction, chatId, word, update):
         transaction.update(doc_ref, {"words": words})
         success_free(word, update)
 
+@firestore.transactional
+def freeAllTransaction(transaction, chatId, update):
+    doc_ref = db.collection("servers").document(chatId)
+    snapshot = doc_ref.get(transaction=transaction)
+    words = snapshot.get("words")
+
+    if not words:
+        empty_bl(update)
+    else:
+        transaction.update(doc_ref, {"words": []})
+        free_all_words(update)
 
 def ban_word(chatId, word, update):
     doc_ref = db.collection("servers").document(chatId)
@@ -48,7 +59,6 @@ def ban_word(chatId, word, update):
     else:
         banWordTransaction(transaction, chatId, word, update)
 
-
 def free_word(chatId, word, update):
     doc_ref = db.collection("servers").document(chatId)
     snapshot = doc_ref.get()
@@ -57,6 +67,15 @@ def free_word(chatId, word, update):
         freeWordTransaction(transaction, chatId, word, update)
     else:
         word_doesnt_exists(word, update)
+    
+def free_all(chatId, update):
+    doc_ref = db.collection("servers").document(chatId)
+    snapshot = doc_ref.get()
+
+    if snapshot.exists:
+        freeAllTransaction(transaction, chatId, update)
+    else:
+        empty_bl(update)
 
 
 def get_banned_words(chatId):

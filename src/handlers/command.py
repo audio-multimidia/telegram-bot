@@ -7,6 +7,7 @@ from constants import *
 from commands.ban_word import ban_word
 from commands.get_banned_words import get_banned_words
 from commands.free_word import free_word
+from commands.free_all import free_all
 from messages import user_unauthorized
 
 
@@ -37,6 +38,8 @@ def __watch(bot, update):
             get_banned_words(update, args)
         elif command == "free":
             free_word(update, args)
+        elif command == "freeAll":
+            free_all(update)
 
     else:
         user_unauthorized(update)
