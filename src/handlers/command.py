@@ -38,7 +38,7 @@ def __watch(bot, update):
             get_banned_words(update, args)
         elif command == "free":
             free_word(update, args)
-        elif command == "freeAll":
+        elif command == "freeall":
             free_all(update)
 
     else:
