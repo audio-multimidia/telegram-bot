@@ -2,3 +2,4 @@ python-telegram-bot
 requests
 firebase_admin
 pydub
+ibm_watson

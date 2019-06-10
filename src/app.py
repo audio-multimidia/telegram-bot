@@ -13,7 +13,6 @@ from constants import *
 import config
 import firebase
 
-
 def init():
     config_logger()
 

@@ -1,18 +1,15 @@
+import logging
+
 from pydub import AudioSegment
 from constants import *
 
-def ogg_to_mp3 (fileName):
+def ogg_to_wav (fileName):
+    logging.info("Converting " + fileName + " to wav")
+
     audio = AudioSegment.from_ogg(PATH + fileName)
 
-    new_path = PATH + fileName.replace(OGG_EXTENSION, MP3_EXTENSION)
-    audio.export(new_path, format=MP3, tags={"artist": "@WordBlocker"})
+    new_path = PATH + fileName.replace(OGG_EXTENSION, WAV_EXTENSION)
+    audio.export(new_path, format=WAV, tags={"artist": "@WordBlocker"})
     
-    return new_path
-
-def mp3_to_ogg (fileName):
-    audio = AudioSegment.from_mp3(PATH + fileName)
-
-    new_path = PATH + fileName.replace(MP3_EXTENSION, OGG_EXTENSION)
-    audio.export(new_path, format=OGG)
-    
+    logging.info (fileName + " converted to " + new_path)
     return new_path
