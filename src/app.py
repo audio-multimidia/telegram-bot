@@ -26,6 +26,6 @@ def init():
 
     updater.start_polling()
     logging.info("Bot is listening for messages...")
-
+    
 
 init()

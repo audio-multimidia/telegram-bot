@@ -1,0 +1,34 @@
+{
+    "1": {
+        "transcription": "Pode me ensinar a tocar um instrumento?",
+        "keywords": ["Pode", "ensinar", "tocar", "instrumento"]
+    },
+    "3": {
+        "transcription": "O senhor ta indo trabalhar hoje?",
+        "keywords": ["senhor", "trabalhar", "hoje"]
+    },
+    "4": {
+        "transcription": "Aquela mulher é portuguesa",
+        "keywords": ["mulher", "portuguesa"]
+    },
+    "5": {
+        "transcription": "Vou cumprir",
+        "keywords": ["Vou"]
+    },
+    "6": {
+        "transcription": "Vamos comprar um carro que funciona",
+        "keywords": ["comprar", "carro", "funciona"]
+    },
+    "8": {
+        "transcription": "Os funcionários chegam tarde todos os dias",
+        "keywords": ["funcionarios", "tarde", "dias"]
+    },
+    "9": {
+        "transcription": "O céu está azul",
+        "keywords": ["céu", "azul"]
+    },
+    "10": {
+        "transcription": "A perna dói",
+        "keywords": ["perna", "dói"]
+    }
+}
