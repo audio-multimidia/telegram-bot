@@ -1,0 +1,12 @@
+version: "2"
+services:
+  bot:
+    container_name: bot
+    restart: always
+    build: 
+      context: .
+      dockerfile: production.Dockerfile
+    volumes:
+      - .:/src
+    ports:
+      - "4458:4458"

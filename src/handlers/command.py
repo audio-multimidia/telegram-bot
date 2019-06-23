@@ -10,6 +10,7 @@ from commands.free_word import free_word
 from commands.free_all import free_all
 from messages import user_unauthorized
 
+users_with_permission = ["creator", "administrator"]
 
 def __watch(bot, update):
     
@@ -21,15 +22,12 @@ def __watch(bot, update):
     command = cut_command(splitedMsg[0][1:])
     args = splitedMsg[1:]
 
-    # logging.info("UPDATE: " + str(update))
-    # logging.info("idUser: " + str(usr_id))
-    # logging.info("Command: " + command)
-    # logging.info("Arguments: " + ", ".join(args))
-
     sender = message.chat.get_member(usr_id)
+
     logging.info(sender)
     logging.info(sender.status)
-    if sender.status == "creator" or sender.status == "administrator":
+    
+    if sender.status in users_with_permission:
         logging.info(command)
         
         if command == "ban":
@@ -40,7 +38,6 @@ def __watch(bot, update):
             free_word(update, args)
         elif command == "freeall":
             free_all(update)
-
     else:
         user_unauthorized(update)
 

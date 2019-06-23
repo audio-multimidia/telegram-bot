@@ -23,7 +23,5 @@ def test_reconigze_words ():
             print (recognize_keywords(AUDIOS_PATH + key + ".wav", data[key]["keywords"]))
 
 
-
-
-test_reconigze_words()
-test_audio_to_text()
+# test_reconigze_words()
+# test_audio_to_text()
