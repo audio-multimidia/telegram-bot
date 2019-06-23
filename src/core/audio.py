@@ -25,6 +25,19 @@ def audio_to_text(filePath):
         else:
             return result['results']
 
+def recognize_keywords(filePath, keywords):
+    with open(filePath, 'rb') as audio_file:
+        logging.info ("Executing speech to text")
+
+        result = speech_to_text.recognize(
+            audio_file, content_type='audio/wav', timestamps=True, model="pt-BR_NarrowbandModel",
+            keywords=keywords, keywords_threshold=0.5, profanity_filer=False).get_result()
+
+        if ("error" in result.keys()):
+            return result["code_description"]["keywords_result"]
+        else:
+            return result['results']
+
 
 def word_block_audio(filePath, blockedWords):
     audio = AudioSegment.from_wav(filePath) # original audio
