@@ -3,9 +3,12 @@ import logging
 
 from ibm_watson import SpeechToTextV1
 from pydub import AudioSegment
+from pydub.generators import Sine
 import json
 import config
 from constants import *
+
+bip = Sine(500)
 
 speech_to_text = SpeechToTextV1(
     iam_apikey= config.get(WATSON_API_KEY),
@@ -18,7 +21,7 @@ def audio_to_text(filePath):
 
         result = speech_to_text.recognize(
             audio_file, content_type='audio/wav', timestamps=True, model="pt-BR_NarrowbandModel",
-            word_confidence=True, profanity_filer=False).get_result()
+            word_confidence=True, profanity_filter=False).get_result()
 
         if ("error" in result.keys()):
             return result["code_description"]
@@ -59,7 +62,9 @@ def word_block_audio(filePath, blockedWords):
     for i in timestamps:
         if not i[0] in blockedWords.keys():
             edited += audio[i[1] * secs : i[2] * secs] # Concat with chunck that is not blocked
-
+        else:
+            edited += bip.to_audio_segment((i[2] - i[1]) * secs)
+    
     new_audio_path = filePath.replace(WAV_EXTENSION, "-result.wav")
     
     logging.info ("Exporting file " + new_audio_path)
