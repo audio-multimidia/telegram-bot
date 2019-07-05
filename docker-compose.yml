@@ -3,7 +3,9 @@ services:
   bot:
     container_name: bot
     restart: always
-    build: .
+    build:
+      context: .
+      dockerfile: development.Dockerfile
     volumes:
       - .:/src
     ports:

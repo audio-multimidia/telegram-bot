@@ -5,7 +5,7 @@ services:
     restart: always
     build: 
       context: .
-      dockerfile: production.Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - .:/src
     ports:
